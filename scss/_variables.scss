@@ -2,6 +2,15 @@
 $cursor:            '../../assets/gamePlay/gamePlayObjects/cursor.png';
 
 
+// Preloader
+$preloader-border-size:         16px;
+$preloader-border-type:         solid;
+$preloader-border-base-color:   #f3f3f3;
+$preloader-border-active-color: #3498db;
+$preloader-border-radius:       50%;
+$preloader-width:               120px;
+$preloader-height:              120px;
+
 // Transitions and Effects
 $transition-time:           .4s;
 $image-transition-time:     0.3s;

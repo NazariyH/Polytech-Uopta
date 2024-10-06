@@ -9,6 +9,32 @@
 @import './components/game';
 @import './components/finalScreen';
 
+/* Preloader styles */
+.preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: #fff; /* Background color of the preloader */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The loader (spinner) */
+.loader {
+    border: $preloader-border-size $preloader-border-type $preloader-border-base-color;
+    border-top: $preloader-border-size $preloader-border-type $preloader-border-active-color;
+    border-radius: $preloader-border-radius;
+    width: $preloader-width;
+    height: $preloader-height;
+
+    @include preloaderAnimation;
+}
+
+
 body {
     @include imagePosition;
     @include fullscreenMode;

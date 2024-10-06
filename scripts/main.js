@@ -366,26 +366,6 @@ function startAudio() {
     });
 }
 
-startMenu.changeBackground();
-startMenu.loadFormBlock();
-
-
-const form = document.querySelector('form');
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    let [selectedSacrifice, selectedAmmunition, time, speed, ammoAmount] = startMenu.getData();
-    document.getElementById('start-background-music').pause();
-
-    const gameplayMusic = document.querySelector('#gameplay-music');
-    gameplayMusic.volume = 0.5;
-    gameplayMusic.play();
-
-
-    let game = new Game(selectedSacrifice, selectedAmmunition, time, speed, ammoAmount);
-    game.initializeGame();
-});
-
 
 const sacrificeImage = document.querySelectorAll('.form__image--sacrifice');
 sacrificeImage.forEach(image => {
@@ -420,8 +400,6 @@ homeBtn.addEventListener('click', () => {
     location.reload();
 });
 
-
-
 const buttons = Array.from(document.getElementsByTagName('button'));
 const additionalButtons = Array.from(document.getElementsByClassName('button'));
 const numberInputs = Array.from(document.querySelectorAll('input[type="number"]'));
@@ -432,3 +410,27 @@ allButtons.forEach(button => {
         document.getElementById('button-click').play();
     });
 });
+
+window.onload = function () {
+    const preloader = document.getElementById('preloader');
+    preloader.style.display = 'none';
+
+    startMenu.changeBackground();
+    startMenu.loadFormBlock();
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        let [selectedSacrifice, selectedAmmunition, time, speed, ammoAmount] = startMenu.getData();
+        document.getElementById('start-background-music').pause();
+
+        const gameplayMusic = document.querySelector('#gameplay-music');
+        gameplayMusic.volume = 0.5;
+        gameplayMusic.play();
+
+
+        let game = new Game(selectedSacrifice, selectedAmmunition, time, speed, ammoAmount);
+        game.initializeGame();
+    });
+}
