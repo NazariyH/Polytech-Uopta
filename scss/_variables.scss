@@ -24,15 +24,15 @@ $body-background-color:     #3C3D37;
 //Theme
 $theme_button_image:          '../../assets/gamePlay/gamePlayObjects/moon.png';
 $theme_button_image_width:    30px;
-$theme_button_image_height:    30px;
+$theme_button_image_height:   30px;
 
 
 // form
-$form-width:                1000px;
-$form-height:               auto;
+$form-width:                1200px;
+$form-height:               900px;
 $form-background-color:     #1e201eb9;
 $form-color:                #ECDFCC;
-$form-padding:              80px;
+$form-padding:              60px;
 $form-margin:               80px;
 $form-title-margin:         20px;
 $form-border-radius:        50px;
@@ -56,11 +56,12 @@ $form-button-height:                $form-input-height;
 $form-button-background:            $form-input-background;
 $form-button-hover-background:      $form-input-focus-background;
 $form-loading-offset:               100%;
+$form-content-margin:               30px;
 
 
 // images 
-$background-image-width:    200px;
-$background-image-height:   150px;
+$background-image-width:    190px;
+$background-image-height:   130px;
 $sacrifice-image-width:     130px;
 $sacrifice-image-height:    100px;
 
@@ -92,6 +93,11 @@ $screamer-height:           2000px;
 $hit-image:                  '../../assets/gamePlay/gamePlayObjects/hit.png';
 $hit_object-width:          50px;
 $hit_object-height:         50px;
+
+
+// Ammunition
+$ammunition-width:           70px;
+$ammunition-height:          60px;                
 
 
 // Body shake

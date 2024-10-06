@@ -16,8 +16,9 @@
         @include setTheme;
         @include flexCenter(column);
 
-        &__block {       
-            transition: all $transition-time ease-in-out;     
+        &__block {
+            transition: all $transition-time ease-in-out;
+
             &.loading {
                 transform: translateX($form-loading-offset);
             }
@@ -43,8 +44,30 @@
                 width: ($form-width - $form-padding);
                 height: $background-image-height * $checked-image-scale !important;
 
+                .form__image--ammunition {
+                    label img {
+                        width: $ammunition-width !important;
+                        height: $ammunition-height !important;
+                    }
+
+                    input[type="radio"] {
+                        display: none;
+
+                        &:checked+label {
+                            img {
+                                opacity: 1;
+                                transition: all $image-transition-time ease-in-out;
+                                width: $ammunition-width * $checked-image-scale !important;
+                                height: $ammunition-height * $checked-image-scale !important;
+                            }
+                        }
+                    }
+                }
+
+
                 .form__image--sacrifice,
-                .form__image--background {
+                .form__image--background,
+                .form__image--ammunition {
                     @include flexCenter(column);
 
                     label img {
@@ -123,6 +146,24 @@
                     .form__subtitle {
                         font-size: $subtitle-font-size;
                     }
+                }
+            }
+
+            &:nth-of-type(3) {
+                .form__title {
+                    margin-bottom: $form-content-margin;
+                }
+
+                .form__content {
+                    height: $ammunition-height + $form-content-margin !important;
+                    margin-bottom: $form-content-margin;
+                }
+            }
+
+            &:nth-of-type(4) {
+                .form__content {
+                    height: $form-button-height + $form-content-margin !important;
+                    margin-bottom: $form-content-margin;
                 }
             }
         }

@@ -1,8 +1,9 @@
 /* This is the best game ever! */
 
 class Game {
-    constructor(sacrifice, time, speed, ammoAmount) {
+    constructor(sacrifice, ammunition, time, speed, ammoAmount) {
         this.sacrifice = sacrifice;
+        this.ammunition = ammunition;
         this.time = time;
         this.totalSeconds = time * 60;
         this.speed = speed;
@@ -39,7 +40,7 @@ class Game {
         // Sound effects
         this.sacrificeSoundEffect = this.game.querySelectorAll('.sacrifice-sound-effect');
         this.screamerSoundEffect = this.game.querySelector('#screamer-audio');
-        this.hitSoundEffect = this.game.querySelector('#hit-sound-effect');
+        this.hitSoundEffect = document.querySelector(`#hit_effect_${this.ammunition[this.ammunition.length - 1]}`);
         this.result_background_music = document.getElementById('result-background-music');
     }
 
@@ -108,7 +109,7 @@ class Game {
             and add eventlistener when user click anywhere within game window
          */
 
-        document.body.style.cursor = 'url(./assets/gamePlay/gamePlayObjects/gaming_cursor.png), auto';
+        document.body.style.cursor = `url(./assets/gamePlay/ammunition/${this.ammunition}/cursor.png), auto`;
         if (!this.ammoAmount == false) this.game.addEventListener('click', (event) => this.showHitObject(event));
     }
 
@@ -125,6 +126,7 @@ class Game {
         const positionY = event.clientY;
 
         const hitObject = document.createElement('div');
+        hitObject.style.backgroundImage = `url(./assets/gamePlay/ammunition/${this.ammunition}/trace.png)`;
         hitObject.classList.add('hit');
 
         hitObject.style.top = `${positionY}px`;
@@ -161,7 +163,6 @@ class Game {
         this.timerObject.textContent = this.formatTime(this.totalSeconds);
 
         this.timerInterval = setInterval(() => {
-            console.log(this.successHits, this.unsuccessHits, this.ammoAmount)
             this.totalSeconds--;
             this.timerObject.textContent = this.formatTime(this.totalSeconds);
 
@@ -255,10 +256,13 @@ class Game {
 var startMenu = {
     selectedSacrifice: null,
     selectedBackground: null,
+    selectedAmmunition: null,
     time: null,
     speed: null,
     sacrificeId: null,
+    ammunitionId: null,
     ammoAmount: null,
+
     loadAnimationTime: 200,
     form: document.querySelector('form'),
     resultBlock: document.querySelector('#result-screen'),
@@ -266,19 +270,21 @@ var startMenu = {
     getData() {
         // Get sacrifice
         const sacrificeInputs = this.form.querySelectorAll('input[name="sacrifice"]');
-        this.selectedSacrifice = null;
-
         sacrificeInputs.forEach(input => {
             if (input.checked) this.selectedSacrifice = input.value;
         });
 
+        const ammunitionInputs = this.form.querySelectorAll('input[name="ammunition"]');
+        ammunitionInputs.forEach(input => {
+            if (input.checked) this.selectedAmmunition = input.value;
+        });
 
         // Get the game duration and speed
         this.time = this.form.querySelector('#time').value;
         this.speed = this.form.querySelector('#speed').value;
         this.ammoAmount = this.form.querySelector('#ammo-amount').value;
 
-        return [this.selectedSacrifice, this.time, this.speed, this.ammoAmount];
+        return [this.selectedSacrifice, this.selectedAmmunition, this.time, this.speed, this.ammoAmount];
     },
 
     playPreloadAudio(event) {
@@ -287,6 +293,16 @@ var startMenu = {
         this.sacrificeId = event.currentTarget.getAttribute('data-sacrificeId');
         const sacrificePreloadAudio = this.form.querySelector(`#preload_${this.sacrificeId}`);
         sacrificePreloadAudio.play().catch(function (error) {
+            console.error('Error playing audio:', error);
+        });
+    },
+
+    playAmmunitionPreloadAudio(event) {
+        // Play Preload sound when user select ammunition
+
+        this.ammunitionId = event.currentTarget.getAttribute('data-ammunitionId');
+        const ammunitionPreloadAudio = this.form.querySelector(`#hit_effect_${this.ammunitionId}`);
+        ammunitionPreloadAudio.play().catch(function (error) {
             console.error('Error playing audio:', error);
         });
     },
@@ -358,20 +374,31 @@ const form = document.querySelector('form');
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    let [selectedSacrifice, time, speed, ammoAmount] = startMenu.getData();
-
+    let [selectedSacrifice, selectedAmmunition, time, speed, ammoAmount] = startMenu.getData();
     document.getElementById('start-background-music').pause();
-    document.querySelector('#gameplay-music').play();
 
-    let game = new Game(selectedSacrifice, time, speed, ammoAmount);
+    const gameplayMusic = document.querySelector('#gameplay-music');
+    gameplayMusic.volume = 0.5;
+    gameplayMusic.play();
+
+
+    let game = new Game(selectedSacrifice, selectedAmmunition, time, speed, ammoAmount);
     game.initializeGame();
 });
 
 
 const sacrificeImage = document.querySelectorAll('.form__image--sacrifice');
 sacrificeImage.forEach(image => {
-    image.addEventListener('click', (event) => {
-        startMenu.playPreloadAudio(event)
+    image.addEventListener('click', event => {
+        startMenu.playPreloadAudio(event);
+    });
+});
+
+
+const ammunitionImage = document.querySelectorAll('.form__image--ammunition');
+ammunitionImage.forEach(image => {
+    image.addEventListener('click', event => {
+        startMenu.playAmmunitionPreloadAudio(event);
     });
 });
 
