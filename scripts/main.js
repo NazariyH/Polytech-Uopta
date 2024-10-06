@@ -309,8 +309,7 @@ var startMenu = {
     changeTheme(event) {
         /* Toggle theme */
 
-        const resultScreen = this.form.querySelector('#result-screen');
-        console.log(event.currentTarget.style.backgroundImage)
+        const resultScreen = document.querySelector('#result-screen');
 
         if (form.classList.contains('theme--dark')) {
             form.classList.remove('theme--dark');
