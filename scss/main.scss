@@ -1,0 +1,39 @@
+// configs
+@import 'variables';
+@import 'functions';
+@import 'mixens';
+@import 'reset';
+
+// components
+@import './components/mainMenu';
+@import './components/game';
+@import './components/finalScreen';
+
+body {
+    @include imagePosition;
+    @include fullscreenMode;
+
+    position: relative;
+    user-select: none;
+    background-color: $body-background-color;
+    color: $text-color;
+    overflow-x: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        width: 100vw;
+        height: 100%;
+        @include mask;
+    }
+
+    .wrap {
+        position: absolute;
+        z-index: 2;
+    }
+}
+
+.d-none {
+    display: none
+}

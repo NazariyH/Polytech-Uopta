@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dist/css/main.min.css">
+    <title>Палітех Йопта</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="form-wrap">
+            <form class="form theme--dark">
+                <div class="form__block loading">
+                    <div class="form__header">
+                        <h1 class="form__title">Фон</h1>
+                        <button type="button" id="themeBtn" class="form__theme--btn"></button>
+                    </div>
+                    <div class="form__content">
+                        <audio id="swipe" src="./assets/gamePlay/audio/swipe.mp3"></audio>
+                        <div class="form__image--background">
+                            <input id="bg_1" type="radio" name="background" value="background_1">
+                            <label for="bg_1">
+                                <img src="./assets/gamePlay/backgrounds/background_1.jpg" alt="Background 1">
+                            </label>
+                        </div>
+                        <div class="form__image--background">
+                            <input id="bg_2" type="radio" name="background" value="background_2" checked>
+                            <label for="bg_2">
+                                <img src="./assets/gamePlay/backgrounds/background_2.jpg" alt="Background 2">
+                            </label>
+                        </div>
+                        <div class="form__image--background">
+                            <input id="bg_3" type="radio" name="background" value="background_3">
+                            <label for="bg_3">
+                                <img src="./assets/gamePlay/backgrounds/background_3.jpg" alt="Background 3">
+                            </label>
+                        </div>
+                        <div class="form__image--background">
+                            <input id="bg_4" type="radio" name="background" value="background_4">
+                            <label for="bg_4">
+                                <img src="./assets/gamePlay/backgrounds/background_4.jpg" alt="Background 4">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form__block loading">
+                    <h1 class="form__title">Твоя жертва</h1>
+
+                    <div class="form__content">
+                        <div class="form__image--sacrifice" data-sacrificeId="1">
+                            <input id="sacrifice_1" type="radio" name="sacrifice" value="sacrifice_1">
+                            <label for="sacrifice_1">
+                                <img src="./assets/sacrifice_1/sacrifice.png" alt="sacrifice">
+                            </label>
+                            <h3 class="form__subtitle">Ількін</h3>
+
+                            <audio id="preload_1" class='d-none' src="./assets/sacrifice_1/audio/preload.mp3"></audio>
+                        </div>
+                        <div class="form__image--sacrifice" data-sacrificeId="2">
+                            <input id="sacrifice_2" type="radio" name="sacrifice" value="sacrifice_2">
+                            <label for="sacrifice_2">
+                                <img src="./assets/sacrifice_2/sacrifice.png" alt="sacrifice">
+                            </label>
+                            <h3 class="form__subtitle">Кутельмах</h3>
+
+                            <audio id="preload_2" class='d-none' src="./assets/sacrifice_2/audio/preload.mp3"></audio>
+                        </div>
+                        <div class="form__image--sacrifice" data-sacrificeId="3">
+                            <input id="sacrifice_3" type="radio" name="sacrifice" value="sacrifice_3" checked>
+                            <label for="sacrifice_3">
+                                <img src="./assets/sacrifice_3/sacrifice.png" alt="sacrifice">
+                            </label>
+                            <h3 class="form__subtitle">Банах</h3>
+
+                            <audio id="preload_3" class='d-none' src="./assets/sacrifice_3/audio/preload.mp3"></audio>
+                        </div>
+                        <div class="form__image--sacrifice" data-sacrificeId="4">
+                            <input id="sacrifice_4" type="radio" name="sacrifice" value="sacrifice_4">
+                            <label for="sacrifice_4">
+                                <img src="./assets/sacrifice_4/sacrifice.png" alt="sacrifice">
+                            </label>
+                            <h3 class="form__subtitle">Староста ПЗ-14</h3>
+
+                            <audio id="preload_4" class='d-none' src="./assets/sacrifice_4/audio/preload.mp3"></audio>
+                        </div>
+                        <div class="form__image--sacrifice" data-sacrificeId="5">
+                            <input id="sacrifice_5" type="radio" name="sacrifice" value="sacrifice_5">
+                            <label for="sacrifice_5">
+                                <img src="./assets/sacrifice_5/sacrifice.png" alt="sacrifice">
+                            </label>
+                            <h3 class="form__subtitle">Творець цього шедевра</h3>
+
+                            <audio id="preload_5" class='d-none' src="./assets/sacrifice_5/audio/preload.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form__block loading">
+                    <div class="form__content">
+                        <div class="block__input">
+                            <label for="time">Хвилини</label>
+                            <input id="time" type="number" value="2" required>
+                        </div>
+                        <div class="block__input">
+                            <label for="speed">Швидкість (менше швидше)</label>
+                            <input id="speed" type="number" value="1000" required>
+                        </div>
+                        <div class="block__input">
+                            <label for="ammo-amount">Кількість яєць</label>
+                            <input id="ammo-amount" type="number" value="50" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form__block loading">
+                    <button id="play" type="submit">Грати</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="game" class="game d-none">
+            <audio class="sacrifice-sound-effect" src=""></audio>
+            <audio class="sacrifice-sound-effect" src=""></audio>
+            <audio class="sacrifice-sound-effect" src=""></audio>
+            <audio class="sacrifice-sound-effect" src=""></audio>
+            <audio class="sacrifice-sound-effect" src=""></audio>
+            <audio id="screamer-audio" src=""></audio>
+            <audio id="hit-sound-effect" src="./assets/gamePlay/audio/hit_effect.mp3"></audio>
+
+            <div id="screamer" class="game__screamer"></div>
+
+            <div class="game__header">
+                <h1 class="game__header--score">Очки - <span class="game__header--score--count">0</span></h1>
+                <h1 class="game__header--timer"><span class="game__header--timer--count">00</span>:<span
+                        class="game__header--timer--count">00</span></h1>
+                <h1 class="game__header--ammo"><span class="game__header--ammo--count">0 - Яєць</span></h1>
+            </div>
+
+            <div class="game__gameplay">
+                <div class="game__gameplay--block">
+                    <div class="game__gameplay--block--pipe"></div>
+                    <div class="game__gameplay--block--sacrifice"></div>
+                </div>
+
+                <div class="game__gameplay--block">
+                    <div class="game__gameplay--block--pipe"></div>
+                    <div class="game__gameplay--block--sacrifice"></div>
+                </div>
+
+                <div class="game__gameplay--block">
+                    <div class="game__gameplay--block--pipe"></div>
+                    <div class="game__gameplay--block--sacrifice"></div>
+                </div>
+
+                <div class="game__gameplay--block">
+                    <div class="game__gameplay--block--pipe"></div>
+                    <div class="game__gameplay--block--sacrifice"></div>
+                </div>
+
+                <div class="game__gameplay--block">
+                    <div class="game__gameplay--block--pipe"></div>
+                    <div class="game__gameplay--block--sacrifice"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="result d-none">
+            <div id="result-screen" class="pseudo--form theme--dark">
+                <div class="form__block loading">
+                    <div class="form__header">
+                        <h1 class="form__title">Результати</h1>
+                    </div>
+
+                    <div class="form__content">
+                        <div class="form__content--subblock">
+                            <h3 class="form__content--text">Потрачено часу:</h3>
+                            <span class="form__content--text--time">00:00</span>
+                        </div>
+                        <div class="form__content--subblock">
+                            <h3 class="form__content--text">Потрачено яєць:</h3>
+                            <span class="form__content--text--spended--ammo">0</span>
+
+                        </div>
+                        <div class="form__content--subblock">
+                            <h3 class="form__content--text">Процент попадань:</h3>
+                            <span class="form__content--text--accuracy">0%</span>
+                        </div>
+                        <div class="form__content--subblock">
+                            <h3 class="form__content--text">Швидкість респавну</h3>
+                            <span class="form__content--text--speed">0</span>
+                        </div>
+                    </div>
+
+                    <div class="form__footer">
+                        <button id="home" type="submit"><img src="./assets/gamePlay/gamePlayObjects/arrow.svg"
+                                alt="">Назад</button>
+                    </div>
+                </div>
+                <div class="form__block loading">
+                    <img src="./assets/gamePlay/gamePlayObjects/final_gif.gif" alt="OOH">
+                    <a href="https://github.com/NazariyH" target="_blank" class="button">Github автора</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="start-background-music" src="./assets/gamePlay/audio/start_background_music.mp3" loop></audio>
+    <audio id="result-background-music" src="./assets/gamePlay/audio/final_music_background.mp3" loop></audio>
+    <audio id="gameplay-music" src="./assets/gamePlay/audio/gameplay_music.mp3" loop></audio>
+    <audio id="button-click" src="./assets/gamePlay/audio/button_click.mp3"></audio>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>

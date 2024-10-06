@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    line-height: 1.15; /* Improves readability */
+    -webkit-text-size-adjust: 100%; /* Prevents text resizing in iOS */
+}
+html, body {
+    cursor: url($cursor) 35 35, auto;
+}
+a, input, button, textarea, label, img {
+    cursor: url($cursor) 35 35, auto;
+}
+
+/* Remove arrows in WebKit browsers */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove arrows in Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input {
+    all: unset; /* Resets all properties */
+    box-sizing: border-box; /* Ensures consistent sizing */
+    width: 100%; /* Ensures it takes up the full width of its container */
+    margin: 0; /* Removes any default margin */
+    padding: 0; /* Removes any default padding */
+    border: none; /* Removes any default border */
+    outline: none; /* Removes focus outline */
+    background: $text-color; /* Removes default background color */
+    font: inherit; /* Inherits font from parent */
+    color: darken($text-color, 100); /* Inherits text color from parent */
+}
+
+button {
+    box-sizing: border-box; /* Ensures consistent sizing */
+    display: inline-block; /* Resets display to inline-block for button behavior */
+    width: auto; /* Ensures button takes up appropriate space */
+    margin: 0; /* Removes any default margin */
+    padding: 0; /* Removes any default padding */
+    border: none; /* Removes any default border */
+    background: none; /* Removes default background */
+    font: inherit; /* Inherits font from parent */
+    color: inherit; /* Inherits text color from parent */
+    cursor: pointer; /* Ensures it still behaves as a clickable element */
+}
+
+
+audio {
+    display: none;
+}

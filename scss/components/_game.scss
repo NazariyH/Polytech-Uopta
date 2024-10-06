@@ -1,0 +1,91 @@
+
+body {
+    &.shake {
+        @include shakingAnimation;
+    }
+}
+
+.game {
+    font-family: $gameplay-fontfamily, sans-serif;
+    padding: $gameplay-paddingY $gameplay-paddingX 0 $gameplay-paddingX;
+    font-size: $gameplay-fontsize;
+
+    @include fullscreenMode;
+    @include flexPosition($x: space-between, $y: space-between, $direction: column);
+
+
+    &__screamer {
+        width: 0;
+        height: 0;
+        transition: all $transition-time ease-in-out;
+        z-index: 5;
+
+        @include positionCenter(true);
+        @include imagePosition;
+
+        &.activated {
+            width: $screamer-width;
+            height: $screamer-height + $screamer-width / 5;
+        }
+    }
+
+    .hit {
+        position: absolute;
+        z-index: 4;
+        width: $hit_object-width;
+        height: $hit_object-height;
+
+        background-image: url($hit-image);
+        @include imagePosition;
+    }
+
+    &__header {
+        @include flexPosition($x: space-between, $y: center, $direction: row);
+
+        h1 {
+            width: 100%;
+
+            &:nth-child(2) {
+                text-align: center;
+            }
+
+            &:nth-child(3) {
+                text-align: end;
+            }
+        }
+    }
+
+    &__gameplay {
+        @include flexPosition($x: space-around, $y: center, $direction: row);
+
+        &--block {
+            width: $game-block-width;
+            height: $game-block-height;
+            position: relative;
+
+            &--pipe {
+                width: $game-block-width;
+                height: $game-block-height;
+
+                background-image: url($game-block-image);
+                @include imagePosition;
+                @include positionCenter;
+                z-index: 3;
+            }
+
+            &--sacrifice {
+                width: $game-sacrifice-width;
+                height: $game-sacrifice-height;
+                transition: all $transition-time ease-in-out;
+
+                @include imagePosition;
+                @include positionCenter;
+                z-index: 2;
+
+                &.active {
+                    transform: translate(-50%, calc(($game-sacrifice-height - 80%) - $game-block-height));
+                }
+            }
+        }
+    }
+}

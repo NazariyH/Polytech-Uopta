@@ -1,0 +1,113 @@
+// Basic cursor
+$cursor:            '../../assets/gamePlay/gamePlayObjects/cursor.png';
+
+
+// Transitions and Effects
+$transition-time:           .4s;
+$image-transition-time:     0.3s;
+$image-opacity:             0.8;
+$checked-image-scale:       1.3;
+$reflection_duration:       1s;
+$transition-time:           0.2s;
+
+
+$text-color:                #ECDFCC;
+$score-fontsize:              54px;
+$score-margin-y:              50px;
+$score-margin-x:              100px;
+
+
+// body
+$body-background-color:     #3C3D37;
+
+
+//Theme
+$theme_button_image:          '../../assets/gamePlay/gamePlayObjects/moon.png';
+$theme_button_image_width:    30px;
+$theme_button_image_height:    30px;
+
+
+// form
+$form-width:                1000px;
+$form-height:               auto;
+$form-background-color:     #1e201eb9;
+$form-color:                #ECDFCC;
+$form-padding:              80px;
+$form-margin:               80px;
+$form-title-margin:         20px;
+$form-border-radius:        50px;
+$subtitle-font-size:        14px;
+
+$form-input-width:                  $form-width / 3 - $form-padding;
+$form-input-height:                 50px;
+$form-input-fontsize:               20px;
+$form-input-margin:                 20px;
+$form-input-background:           #636363;
+$form-input-focus-background:       $form-input-background; 
+
+@if (lightness($form-input-background) > 40) {
+    $form-input-focus-background: darken($form-input-background, 20%);
+} @else {
+    $form-input-focus-background: lighten($form-input-background, 20%);
+}
+
+$form-button-width:                 $form-width - $form-padding;
+$form-button-height:                $form-input-height;
+$form-button-background:            $form-input-background;
+$form-button-hover-background:      $form-input-focus-background;
+$form-loading-offset:               100%;
+
+
+// images 
+$background-image-width:    200px;
+$background-image-height:   150px;
+$sacrifice-image-width:     130px;
+$sacrifice-image-height:    100px;
+
+
+// Font family
+$form-fontfamily:           "Roboto";
+$gameplay-fontfamily:       "Russo One";
+
+
+// Gameplay configs
+$gameplay-paddingX:         50px;
+$gameplay-paddingY:         30px;
+$gameplay-fontsize:         25px;
+
+
+// Dimensions of the gameplay block and sacrifice
+$game-block-width:          200px; 
+$game-block-height:         400px;
+$game-block-image:          '../../assets/gamePlay/gamePlayObjects/pipe.png';
+
+$game-sacrifice-width:      140px; 
+$game-sacrifice-height:     140px;
+
+$screamer-width:            2000px;
+$screamer-height:           2000px;
+
+
+// Hit object
+$hit-image:                  '../../assets/gamePlay/gamePlayObjects/hit.png';
+$hit_object-width:          50px;
+$hit_object-height:         50px;
+
+
+// Body shake
+$shake-duration:            .1s;
+$shake-transition-time:     .1s;
+$shake-offsetX:             5px;
+$shake-offsetY:             $shake-offsetX;
+
+
+// Result screen
+$result-screen-gif-width:       350px;
+$result-screen-gif-height:      400px;
+$result-text-margin:            20px;
+$result-text-fontsize:          20px;
+
+$gif-margin:                    50px;
+$arrow-width:                   20px;
+$arrow-height:                  $arrow-width;
+$arrow-right-margin:            10px;

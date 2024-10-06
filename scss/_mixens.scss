@@ -1,0 +1,148 @@
+@mixin imagePosition {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+@mixin positionCenter($topCenter: false) {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @if $topCenter {
+        top: 50%;
+        bottom: auto; // To avoid conflict with bottom: 0 when topCenter is true
+        transform: translate(-50%, -50%);
+    }
+}
+
+@mixin absolutePosition {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@mixin fullscreenMode($w: 0vw, $h: 0vh) {
+    width: calc(100vw + #{$w});
+    height: calc(100vh + #{$h});
+}
+
+
+@mixin flexCenter($direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flexPosition($x: space-between, $y: space-between, $direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $x;
+    align-items: $y;
+}
+
+// Mixin for reflection effect
+@mixin reflection($reflection_duration: 1s, $transition-time: 0.2s) {
+    animation: reflect $reflection_duration infinite;
+    transition: all $transition-time ease-in-out;
+
+    @keyframes reflect {
+        from {
+            transform: scaleX(1);
+        }
+
+        to {
+            transform: scaleX(-1);
+        }
+    }
+}
+
+
+@mixin mask {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+
+@mixin shakingAnimation {
+    animation: shake $shake-duration infinite;
+    transition: all $shake-transition-time ease-in-out;
+
+    @keyframes shake {
+        from {
+            transform: translate(-$shake-offsetX, -$shake-offsetY);
+        }
+        to {
+            transform: translate($shake-offsetX, $shake-offsetY);
+        }
+    }
+}
+
+
+@mixin setTheme {
+    &.theme--dark {
+        background-color: theme(dark);
+
+
+
+        @if (lightness(theme(dark)) > 40%) {
+            color: #000000;
+        }
+
+        @else {
+            color: #ffffff;
+        }
+
+        input[type="number"], #play, #home, a {
+            background-color: lighten($form-input-background, 20);
+            color: #000000;
+        }
+
+        input[type="number"] {
+            &:focus {
+                background-color: lighten($form-input-background, 40);
+            }
+        }
+
+        #play, #home, a {
+            &:hover {
+                background-color: lighten($form-input-background, 40);
+            }
+        }
+    }
+
+    &.theme--light {
+        background-color: theme(light);
+
+        @if (lightness(theme(light)) > 40%) {
+            color: #000000;
+        }
+
+        @else {
+            color: #ffffff;
+        }
+
+        #home img {
+            filter: invert(1);
+        }
+
+        input[type="number"], #play, #home, a {
+            background-color: lighten($form-input-background, 20);
+            color: #ffffff;
+        }
+
+        input[type="number"] {
+            &:focus {
+                background-color: darken($form-input-background, 20);
+            }
+        }
+
+        #play, #home, a {
+            &:hover {
+                background-color: darken($form-input-background, 20);
+            }
+        }
+    }
+}

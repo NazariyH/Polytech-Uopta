@@ -1,0 +1,74 @@
+.result {
+    @include fullscreenMode;
+    @include flexCenter;
+
+    .pseudo--form {
+        position: relative;
+        width: $form-width;
+        height: $result-screen-gif-height + $gif-margin + $form-button-height + $form-padding * 2;
+        padding: $form-padding;
+        margin: $form-margin 0;
+        font-family: $form-fontfamily, sans-serif;
+        border-radius: $form-border-radius;
+        overflow-x: hidden;
+
+        @include setTheme;
+        @include flexPosition($x: space-between, $y: start, $direction: row);
+
+        .form__block {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: all $transition-time ease-in-out;
+
+            @include flexPosition($x: space-between, $y: none, $direction: column);
+
+            &.loading {
+                transform: translateX($form-loading-offset);
+            }
+
+            .form__content {
+                &--subblock {
+                    margin: $result-text-margin 0;
+                    @include flexPosition($x: space-between, $y: center, $direction: row);
+
+                    h3, span {
+                        font-size: $result-text-fontsize;
+                    }
+                }
+            }
+
+            &:nth-child(2) {
+                width: $result-screen-gif-width;
+            }
+
+            img {
+                width: $result-screen-gif-width - $gif-margin;
+                height: $result-screen-gif-height;
+                margin: 0 0 $gif-margin $gif-margin;
+            }
+
+            #home,
+            a {
+                width: 100%;
+                height: $form-button-height;
+                border-radius: $form-border-radius / 3;
+                transition: all $image-transition-time ease-in-out;
+
+                @include flexCenter;
+
+                img {
+                    width: $arrow-width;
+                    height: $arrow-height;
+                    margin: 0;
+                    margin-right: $arrow-right-margin;
+                }
+            }
+
+            a {
+                margin-left: $gif-margin;
+                width: $result-screen-gif-width - $gif-margin;
+            }
+        }
+    }
+}

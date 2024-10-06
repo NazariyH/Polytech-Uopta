@@ -1,0 +1,130 @@
+.form-wrap {
+    @include fullscreenMode;
+    @include flexCenter;
+
+    .form {
+        position: relative;
+        width: $form-width;
+        height: $form-height;
+        padding: 0 $form-padding;
+        margin: $form-margin 0;
+        font-family: $form-fontfamily, sans-serif;
+        border-radius: $form-border-radius;
+        overflow-x: hidden;
+
+
+        @include setTheme;
+        @include flexCenter(column);
+
+        &__block {       
+            transition: all $transition-time ease-in-out;     
+            &.loading {
+                transform: translateX($form-loading-offset);
+            }
+
+
+            .form__header {
+                @include flexPosition($x: space-between, $y: center, $direction: row);
+                margin: $form-title-margin * 3 0 $form-title-margin 0;
+
+                .form__theme--btn {
+                    @include imagePosition;
+                    background-image: url($theme_button_image);
+
+                    width: $theme_button_image_width;
+                    height: $theme_button_image_height;
+                }
+            }
+
+
+            .form__content {
+                @include flexCenter;
+                justify-content: space-between;
+                width: ($form-width - $form-padding);
+                height: $background-image-height * $checked-image-scale !important;
+
+                .form__image--sacrifice,
+                .form__image--background {
+                    @include flexCenter(column);
+
+                    label img {
+                        width: $background-image-width;
+                        height: $background-image-height;
+                        opacity: $image-opacity;
+                    }
+
+                    input[type="radio"] {
+                        display: none;
+
+                        &:checked+label {
+                            img {
+                                opacity: 1;
+                                transition: all $image-transition-time ease-in-out;
+                                width: $background-image-width * $checked-image-scale;
+                                height: $background-image-height * $checked-image-scale;
+                            }
+                        }
+                    }
+                }
+
+                .block__input {
+                    @include flexCenter(column);
+                    align-items: start;
+
+                    label {
+                        margin-bottom: $form-title-margin / 2;
+                    }
+
+                    input[type="number"] {
+                        width: $form-input-width;
+                        height: $form-input-height;
+                        font-size: $form-input-fontsize;
+                        border-radius: $form-border-radius / 3;
+                        padding: 0 $form-input-margin;
+                        transition: all $image-transition-time ease-in-out;
+                    }
+                }
+            }
+
+            #play {
+                width: $form-button-width;
+                height: $form-button-height;
+                border-radius: $form-border-radius / 3;
+                margin-bottom: $form-padding;
+                transition: all $image-transition-time ease-in-out;
+            }
+
+            &:nth-of-type(2) {
+                .form__content {
+                    height: $sacrifice-image-height * $checked-image-scale;
+                }
+
+                .form__image--sacrifice {
+                    label img {
+                        width: $sacrifice-image-width;
+                        height: $sacrifice-image-height;
+                        opacity: $image-opacity;
+
+                    }
+
+                    input[type="radio"] {
+                        &:checked+label {
+                            img {
+                                @include reflection($reflection_duration, $transition-time);
+
+                                opacity: 1;
+                                transition: all $image-transition-time ease-in-out;
+                                width: $sacrifice-image-width * $checked-image-scale;
+                                height: $sacrifice-image-height * $checked-image-scale;
+                            }
+                        }
+                    }
+
+                    .form__subtitle {
+                        font-size: $subtitle-font-size;
+                    }
+                }
+            }
+        }
+    }
+}

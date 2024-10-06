@@ -1,0 +1,7 @@
+@function theme($theme: dark) {
+    @if ($theme == dark) {
+        @return darken($form-background-color, 100);
+    } @else if ($theme == light) {
+        @return lighten($form-background-color, 80);
+    }
+}
